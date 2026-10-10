@@ -1,0 +1,127 @@
+\textbf{Задание №3} Найти последовательность правил р, |p| > 10, которую можно применить при произвольном выводе терминальной цепочки, но нельзя применить при левом или правом выводе в заданной КС-грамматике (см. варианты заданий).
+    Записать вывод v, в процессе которого применяется последовательность правил р. Построить дерево вывода.
+    Записать левый и правый выводы, эквивалентные выводу v.\label{sec:3}
+    
+    \begin{enumerate}
+    
+
+    \item Произвольный вывод \(v\), в котором применяется \(p\)
+
+    \[
+    \begin{array}{ll@{\hspace{2em}}ll}
+    1. & S \to Aba & 5. & A \to BaB \\
+    2. & S \to bS  & 6. & A \to \varepsilon \\
+    3. & S \to cAbA & 7. & B \to b \\
+    4. & A \to AaS & 8. & B \to aA
+    \end{array}
+    \]
+
+    \begin{align*}
+    S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba 
+        \Rightarrow bbbA_5aSba \\ 
+        &\Rightarrow bbbBaBaS_2ba 
+        \Rightarrow bbbBaB_7abSba 
+        \Rightarrow bbbB_7ababSba \\
+        &\Rightarrow bbbbababS_1ba 
+        \Rightarrow bbbbababA_6baba 
+        \Rightarrow bbbbababbaba
+    \end{align*}
+
+    Последовательность правил: \(2, 2, 2, 1, 4, 5, 2, 7, 7, 1, 6\).
+
+    \item Дерево вывода
+    
+    \begin{center}
+\begin{forest}
+[$S_2$
+  [b]
+  [$S_2$
+    [b]
+    [$S_2$
+      [b]
+      [$S_1$
+        [$A_4$
+          [$A_5$
+            [$B_7$ [b]]
+            [a]
+            [$B_7$ [b]]
+          ]
+          [a]
+          [$S_2$
+            [b]
+            [$S_1$
+              [$A_6$ [\(\varepsilon\)]]
+              [b]
+              [a]
+            ]
+          ]
+        ]
+        [b]
+        [a]
+      ]
+    ]
+  ]
+]
+\end{forest}
+\end{center}
+    
+    \item Левый вывод
+    \(2,2,2,1,4,5\)
+    \begin{align*}
+    S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba \Rightarrow bbbA_5aSba \Rightarrow bbbBaBaS_2ba 
+    \end{align*}
+
+    Крайний слева нетерминал --- это \(B\). Следующее правило в \(p\) ---
+    \(2\) (\(S\to bS\)), но его нельзя применить к \(B\). Значит, левый вывод
+    по этой последовательности невозможен.
+    
+    \item Правый вывод \(2,2,2,1,4\)
+    \begin{align*}
+    S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba \Rightarrow bbbA_5aSba 
+    \end{align*}
+    Крайний справа нетерминал --- это \(S\). Следующее правило в \(p\) ---
+    \(5\) (\(A\to BaB\)), но его нельзя применить к \(S\). Значит, правый вывод
+    по этой последовательности тоже невозможен.
+
+    \item Эквивалентные левый и правый выводы с индексами правил
+
+    Ту же терминальную цепочку
+    \[
+    w=bbbbababbaba
+    \]
+    можно получить левым и правым выводами, но с другим порядком применения
+    правил.
+    \begin{enumerate}
+ 
+    \item Левый вывод
+    \[
+    \begin{aligned}
+    S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba \\
+        &\Rightarrow bbbA_5aSba \Rightarrow bbbB_7aBaSba  \\
+        &\Rightarrow bbbbaB_7aSba \Rightarrow bbbbaaS_2ba \\
+        &\Rightarrow bbbbaabS_1ba \Rightarrow bbbbaabA_6baba \\
+        &\Rightarrow bbbbaababbaba
+    \end{aligned}
+    \]
+    
+    Последовательность правил левого вывода:
+    \[
+    2,\;2,\;2,\;1,\;4,\;5,\;7,\;7,\;2,\;1,\;6.
+    \]
+    
+    \item Правый вывод
+    \[
+    \begin{aligned}
+    S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba \\
+        &\Rightarrow bbbAaS_2ba \Rightarrow bbbAabS_1ba \Rightarrow bbbAabA_6baba \\
+        &\Rightarrow bbbA_5abbaba \Rightarrow bbbBaB_7abbaba \\
+        &\Rightarrow bbbB_7ababbaba \Rightarrow bbbbababbaba
+    \end{aligned}
+    \]
+    Последовательность правил правого вывода:
+    \[
+    2,\;2,\;2,\;1,\;4,\;2,\;1,\;6,\;5,\;7,\;7.
+    \]
+    \end{enumerate}
+    
+    \end{enumerate}

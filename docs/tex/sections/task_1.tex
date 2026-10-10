@@ -1,0 +1,93 @@
+    \textbf{Задание №1} Найти терминальную цепочку $\alpha$, $|\alpha| > 10$, для которой существует не менее двух левых выводов в заданной КС-грамматике (см. варианты
+    заданий). Записать различные левые выводы этой цепочки. Построить деревья вывода. Определить последовательности правил, применяемые при этих выводах. \label{sec:1}
+
+    Правила:
+    
+    \[
+    \begin{array}{ll@{\hspace{2em}}ll}
+    1. & S \to Aba & 5. & A \to BaB \\
+    2. & S \to bS  & 6. & A \to \varepsilon \\
+    3. & S \to cAbA & 7. & B \to b \\
+    4. & A \to AaS & 8. & B \to aA
+    \end{array}
+    \]
+
+    \begin{enumerate}
+        \item Первый левый вывод:
+        \begin{align*}
+        S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_4ba \Rightarrow bbbA_5aSba \Rightarrow bbbB_7aBaSba \\ &\Rightarrow bbbbaB_8aSba \Rightarrow bbbbaaA_6aSba \Rightarrow bbbbaaaS_1ba \\ &\Rightarrow bbbbaaaA_6baba \Rightarrow bbbbaaababa
+        \end{align*}
+
+        Последовательность правил: \(2, 2, 2, 1, 4, 5, 7, 8, 6, 1, 6\).
+
+        \item Дерево вывода для первого левого вывода
+        \begin{center}
+        \begin{forest}
+        [$S_2$
+          [b]
+          [$S_2$
+            [b]
+            [$S_2$
+              [b]
+              [$S_1$
+                [$A_4$
+                  [$A_5$
+                    [$B_7$ [b]]
+                    [a]
+                    [$B_8$ [a] [$A_6$ [$\varepsilon$]]]
+                  ]
+                  [a]
+                  [$S_1$
+                    [$A_6$ [$\varepsilon$]]
+                    [b]
+                    [a]
+                  ]
+                ]
+                [b]
+                [a]
+              ]
+            ]
+          ]
+        ]
+        \end{forest}
+        \end{center}
+    
+        \item Второй левый вывод:
+        \begin{align*}
+        S_2 &\Rightarrow bS_2 \Rightarrow bbS_2 \Rightarrow bbbS_1 \Rightarrow bbbA_5ba \Rightarrow bbbB_7aBba \Rightarrow bbbbaB_8ba \\ &\Rightarrow bbbbaaA_4ba \Rightarrow bbbbaaA_6aSba \Rightarrow bbbbaaaS_1ba \\ &\Rightarrow bbbbaaaA_6baba \Rightarrow bbbbaaababa
+        \end{align*}
+
+        \newpage
+        Последовательность правил: \(2, 2, 2, 1, 5, 7, 8, 4, 6, 1, 6\).
+        \item Дерево вывода для второго левого вывода
+        \begin{center}
+        \begin{forest}
+        [$S_2$
+          [b]
+          [$S_2$
+            [b]
+            [$S_2$
+              [b]
+              [$S_1$
+                [$A_5$
+                  [$B_7$ [b]]
+                  [a]
+                  [$B_8$ [a] [$A_4$
+                    [$A_6$ [$\varepsilon$]]
+                    [a]
+                    [$S_1$
+                      [$A_6$ [$\varepsilon$]]
+                      [b]
+                      [a]
+                    ]
+                  ]]
+                ]
+                [b]
+                [a]
+              ]
+            ]
+          ]
+        ]
+        \end{forest}
+        \end{center}
+    \end{enumerate}
